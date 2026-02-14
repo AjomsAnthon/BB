@@ -119,14 +119,42 @@ function showLove() {
         document.getElementById("slide").src = "pic" + count + ".jpg";
     }, 2000);
 
-    // Play Super Woman by Wande Coal (YouTube Embed)
-   document.getElementById("music").innerHTML = `
-<br><br>
-<a href="https://www.youtube.com/watch?v=8zQFh4r4xO4" target="_blank" 
-style="background:#ff3366;padding:12px 20px;border-radius:30px;color:white;text-decoration:none;">
-Play Our Song 🎵
-</a>
-`;
+   function showLove() {
+    const loveScreen = document.getElementById("loveScreen");
+    loveScreen.style.display = "block";
+
+    // Slideshow
+    const slides = document.querySelectorAll(".slideshow img");
+    let index = 0;
+    setInterval(() => {
+        slides[index].classList.remove("active");
+        index = (index + 1) % slides.length;
+        slides[index].classList.add("active");
+    }, 2500);
+
+    // Show Hugging Bears
+    const bearContainer = document.getElementById("bearContainer");
+    bearContainer.style.display = "block";
+    document.getElementById("bear1").classList.add("hug");
+    document.getElementById("bear2").classList.add("hug");
+
+    // Music Button
+    document.getElementById("music").innerHTML = `
+    <br><br>
+    <a href="https://www.youtube.com/watch?v=8zQFh4r4xO4" target="_blank"
+       style="display:inline-block;
+              background:#ff3366;
+              padding:15px 25px;
+              border-radius:30px;
+              color:white;
+              font-weight:bold;
+              text-decoration:none;
+              font-size:18px;
+              transition:0.3s;">
+       Play Our Song 🎵
+    </a>`;
+}
+
 
 }
 
