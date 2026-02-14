@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Busayomi ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff99cc, #ff3366);
+    overflow: hidden;
+    color: white;
+}
+
+h1 {
+    margin-top: 40px;
+    font-size: 26px;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 10px;
+    position: absolute;
+}
+
+#yesBtn {
+    background-color: white;
+    color: #ff3366;
+    position: relative;
+}
+
+#noBtn {
+    background-color: #444;
+    color: white;
+}
+
+#loveScreen {
+    display: none;
+    margin-top: 20px;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.slideshow {
+    width: 80%;
+    max-width: 300px;
+    margin: 15px auto;
+}
+
+.slideshow img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Busayomi 💖<br>Will you be my Valentine?</h1>
+
+<button id="yesBtn" onclick="showLove()">Yes My Love 💕</button>
+<button id="noBtn">No 😅</button>
+
+<div id="loveScreen">
+    <h2>You Are My Super Woman 💘</h2>
+
+    <div class="slideshow">
+        <img id="slide" src="pic1.jpg">
+    </div>
+
+    <p>I promise to cherish you always, Busayomi ❤️</p>
+
+    <div id="music"></div>
+</div>
+
+<canvas id="fireworks"></canvas>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("touchstart", moveButton);
+noBtn.addEventListener("mouseover", moveButton);
+
+function moveButton() {
+    const maxX = window.innerWidth - 100;
+    const maxY = window.innerHeight - 50;
+
+    noBtn.style.left = Math.random() * maxX + "px";
+    noBtn.style.top = Math.random() * maxY + "px";
+}
+
+function showLove() {
+    document.getElementById("loveScreen").style.display = "block";
+
+    // Start slideshow
+    let count = 1;
+    setInterval(() => {
+        count++;
+        if (count > 10) count = 1;
+        document.getElementById("slide").src = "pic" + count + ".jpg";
+    }, 2000);
+
+    // Play Super Woman by Wande Coal (YouTube Embed)
+    document.getElementById("music").innerHTML =
+        '<iframe width="0" height="0" src="https://www.youtube.com/embed/8zQFh4r4xO4?autoplay=1" allow="autoplay"></iframe>';
+
+    launchFireworks();
+}
+
+// Fireworks
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+function launchFireworks() {
+    setInterval(() => {
+        for (let i = 0; i < 100; i++) {
+            let x = Math.random() * canvas.width;
+            let y = Math.random() * canvas.height;
+            ctx.fillStyle = "hsl(" + Math.random() * 360 + ",100%,50%)";
+            ctx.beginPath();
+            ctx.arc(x, y, 3, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        setTimeout(() => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }, 300);
+    }, 600);
+}
+</script>
+
+</body>
+</html>
