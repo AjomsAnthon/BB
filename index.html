@@ -42,20 +42,36 @@ body{
 }
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
-/* Floating elements */
+/* Floating elements after Yes */
 #loveLetter{
     position:fixed;
     top:20px;
-    left:20px;
-    font-size:24px;
+    right:20px;
+    font-size:18px;
     cursor:pointer;
     z-index:20;
+    display:none;
+    max-width:300px;
+    text-align:left;
+    background:rgba(255,255,255,0.2);
+    padding:15px 20px;
+    border-radius:15px;
+    backdrop-filter:blur(5px);
+    animation:letterFloat 3s ease-in-out infinite alternate;
+    line-height:1.4;
 }
+@keyframes letterFloat{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(-10px);}
+}
+
+/* YouTube card */
 #youtubeCard{
     position:fixed;
     top:20px;
-    right:20px;
+    left:20px;
     z-index:20;
+    display:none;
 }
 
 /* Main Screen */
@@ -90,34 +106,12 @@ button{
 }
 .slideshow img.active{opacity:1;}
 
-/* Teddy Hug Animation */
-#bearContainer{display:none;position:relative;margin-top:20px;height:200px;}
-#bear1,#bear2{position:absolute;width:100px;transition:1s;bottom:0;}
-#bear1{left:35%;transform:rotate(-10deg);}
-#bear2{left:55%;transform:rotate(10deg);}
-.hug{animation:hugging 2s infinite alternate;}
-@keyframes hugging{0%{transform:scale(1) rotate(-10deg);}50%{transform:scale(1.1) rotate(-5deg);}100%{transform:scale(1) rotate(-10deg);}}
+/* Floating heart */
 #heart{position:absolute;top:-50px;left:45%;font-size:40px;opacity:0;animation:heartRise 2s infinite;}
 @keyframes heartRise{0%{top:-50px;opacity:0;}50%{top:-80px;opacity:1;}100%{top:-100px;opacity:0;}}
 </style>
 </head>
 <body>
-
-<!-- Love Letter top-left -->
-<div id="loveLetter">💌 A Love Letter for You</div>
-
-<!-- YouTube Video top-right -->
-<div id="youtubeCard">
-    <a href="https://www.youtube.com/watch?v=8zQFh4r4xO4" target="_blank" style="position:relative; display:inline-block; width:320px; height:180px; border-radius:10px; overflow:hidden; text-decoration:none; box-shadow:0 4px 10px rgba(0,0,0,0.3);">
-        <img src="https://img.youtube.com/vi/8zQFh4r4xO4/hqdefault.jpg" style="width:100%; height:100%; object-fit:cover;">
-        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);">
-            <svg height="60" viewBox="0 0 68 48" width="90">
-                <path d="M66.52,7.59a8.15,8.15,0,0,0-5.73-5.73C56.14,0,34,0,34,0S11.86,0,7.21,1.86a8.15,8.15,0,0,0-5.73,5.73A85.31,85.31,0,0,0,0,24a85.31,85.31,0,0,0,1.48,16.41,8.15,8.15,0,0,0,5.73,5.73C11.86,48,34,48,34,48s22.14,0,26.79-1.86a8.15,8.15,0,0,0,5.73-5.73A85.31,85.31,0,0,0,68,24,85.31,85.31,0,0,0,66.52,7.59Z" fill="#f00"/>
-                <polygon points="45 24 27 14 27 34 45 24" fill="#fff"/>
-            </svg>
-        </div>
-    </a>
-</div>
 
 <!-- Intro Screen -->
 <div id="intro">
@@ -147,15 +141,28 @@ button{
 <img src="pic10.jpg">
 </div>
 
-<!-- Teddy Hug Animation -->
-<div id="bearContainer">
-<img id="bear1" src="bear1.png" class="hug" alt="Bear 1">
-<img id="bear2" src="bear2.png" class="hug" alt="Bear 2">
+<!-- Floating heart -->
 <div id="heart">💖</div>
+
 </div>
 
-<p>I promise to cherish you always ❤️</p>
+<!-- Love Letter (only visible after Yes) -->
+<div id="loveLetter">
+Every smile of yours feels like a little piece of heaven, and every laugh is a song I never want to stop hearing. I love the way your eyes sparkle with joy, the way your voice dances in my ears, and how just thinking of you makes my whole world brighter.<br><br>
+I want you to know that with you, I feel complete. You make ordinary moments extraordinary, and even the simplest days feel like adventures when I’m with you. My heart belongs to you entirely, and I promise to cherish, protect, and adore you for as long as I live. I love you 💕
 </div>
+
+<!-- YouTube Video (only visible after Yes) -->
+<div id="youtubeCard">
+    <a href="https://www.youtube.com/watch?v=DbyuYi5vNeU" target="_blank" style="position:relative; display:inline-block; width:320px; height:180px; border-radius:10px; overflow:hidden; text-decoration:none; box-shadow:0 4px 10px rgba(0,0,0,0.3);">
+        <img src="https://img.youtube.com/vi/DbyuYi5vNeU/hqdefault.jpg" style="width:100%; height:100%; object-fit:cover;">
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);">
+            <svg height="60" viewBox="0 0 68 48" width="90">
+                <path d="M66.52,7.59a8.15,8.15,0,0,0-5.73-5.73C56.14,0,34,0,34,0S11.86,0,7.21,1.86a8.15,8.15,0,0,0-5.73,5.73A85.31,85.31,0,0,0,0,24a85.31,85.31,0,0,0,1.48,16.41,8.15,8.15,0,0,0,5.73,5.73C11.86,48,34,48,34,48s22.14,0,26.79-1.86a8.15,8.15,0,0,0,5.73-5.73A85.31,85.31,0,0,0,68,24,85.31,85.31,0,0,0,66.52,7.59Z" fill="#f00"/>
+                <polygon points="45 24 27 14 27 34 45 24" fill="#fff"/>
+            </svg>
+        </div>
+    </a>
 </div>
 
 <script>
@@ -176,10 +183,16 @@ function moveButton(){
     noBtn.style.top=Math.random()*maxY+"px";
 }
 
-// Show Love — Slides + Bears
+// Show Love — Slides + Letter + Video
 function showLove(){
     const loveScreen=document.getElementById("loveScreen");
     loveScreen.style.display="block";
+
+    // Show Love Letter
+    document.getElementById("loveLetter").style.display="block";
+
+    // Show YouTube Video
+    document.getElementById("youtubeCard").style.display="block";
 
     // Slideshow with fade
     const slides=document.querySelectorAll(".slideshow img");
@@ -189,12 +202,6 @@ function showLove(){
         index=(index+1)%slides.length;
         slides[index].classList.add("active");
     },2500);
-
-    // Show Hugging Bears
-    const bearContainer=document.getElementById("bearContainer");
-    bearContainer.style.display="block";
-    document.getElementById("bear1").classList.add("hug");
-    document.getElementById("bear2").classList.add("hug");
 }
 </script>
 
