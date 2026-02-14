@@ -9,7 +9,7 @@ body{
     padding:0;
     font-family:'Segoe UI',sans-serif;
     background:#ff99cc;
-    overflow-x:hidden; /* Changed to allow vertical scrolling if needed */
+    overflow-x:hidden;
     color:white;
     text-align:center;
 }
@@ -24,17 +24,17 @@ body{
     justify-content:center;
     align-items:center;
     flex-direction:column;
-    z-index:100;
+    z-index:10;
 }
 #intro h1{
-    font-size:32px;
+    font-size:28px;
     animation:fadeIn 3s ease-in-out;
 }
 #startBtn{
     margin-top:20px;
-    padding:12px 25px;
-    font-size:18px;
-    border-radius:30px;
+    padding:10px 20px;
+    font-size:16px;
+    border-radius:25px;
     border:none;
     background:#ff3366;
     color:white;
@@ -42,169 +42,211 @@ body{
 }
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
-/* Main Screen - MOVED UP */
-#main{
+/* Main Screen */
+#main{display:none;padding-top:20px;position:relative;}
+
+/* Top Text + Buttons */
+#topText{
+    margin-top:10px;
+    font-size:16px;
+}
+#topText h1{
+    font-size:22px;
+    margin:5px 0;
+}
+#topText h2{
+    font-size:20px;
+    margin:5px 0;
+}
+#topText button{
+    padding:8px 18px;
+    font-size:14px;
+    margin:4px;
+    border-radius:25px;
+    border:none;
+    cursor:pointer;
+}
+#yesBtn{background:white;color:#ff3366;}
+#noBtn{background:#444;color:white;}
+
+/* Love Screen Layout */
+#loveScreen{
     display:none;
-    padding-top:20px; /* Reduced padding to move text up */
-    position:relative;
-    min-height: 100vh;
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
 }
 
-h1 { margin-top: 10px; font-size: 24px; }
-h2 { margin-top: 5px; font-size: 20px; }
-
-/* Buttons */
-.btn-container {
-    margin-top: 15px;
-    height: 60px; /* Space for the moving No button */
-}
-#yesBtn{
-    background:white;
-    color:#ff3366;
-    padding:12px 25px;
-    font-size:18px;
-    border:none;
-    border-radius:30px;
-    cursor:pointer;
-}
-#noBtn{
-    background:#444;
-    color:white;
-    padding:12px 25px;
-    font-size:18px;
-    border:none;
-    border-radius:30px;
-    cursor:pointer;
-    position:absolute; /* Necessary for the "run away" effect */
-}
-
-/* Slideshow - FULL VISIBILITY */
+/* Slideshow Center */
 .slideshow{
-    width:90%;
-    max-width:350px;
-    margin:10px auto;
+    width:45%;
+    max-width:400px;
+    height:auto;
     position:relative;
-    height:350px; /* Adjusted height */
-    background: rgba(0,0,0,0.1);
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border-radius:15px;
+    margin:10px;
 }
 .slideshow img{
-    max-width: 100%;
-    max-height: 100%;
+    width:100%;
+    max-height:50vh;
     border-radius:15px;
     position:absolute;
     opacity:0;
     transition:opacity 1s ease-in-out;
-    object-fit: contain; /* Ensures the whole image is seen */
+    object-fit:contain;
 }
 .slideshow img.active{opacity:1;}
 
-/* Elements after Yes */
-#loveScreen{display:none;}
-
+/* Love Letter */
 #loveLetter{
     display:none;
-    margin: 20px auto;
-    width: 85%;
-    max-width: 400px;
-    font-size:16px;
-    text-align:left;
+    width:25%;
+    max-width:250px;
     background:rgba(255,255,255,0.2);
-    padding:15px;
+    padding:12px 15px;
     border-radius:15px;
     backdrop-filter:blur(5px);
     line-height:1.4;
+    text-align:left;
+    font-size:14px;
+    animation:letterFloat 3s ease-in-out infinite alternate;
+    margin:10px;
+}
+@keyframes letterFloat{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(-10px);}
 }
 
+/* YouTube Video */
 #youtubeCard{
     display:none;
-    margin: 20px auto;
-    width: 320px;
+    width:25%;
+    max-width:250px;
+    margin:10px;
+}
+#youtubeCard a{
+    display:block;
+    width:100%;
+    height:0;
+    padding-bottom:56.25%; /* 16:9 */
+    position:relative;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 4px 10px rgba(0,0,0,0.3);
+}
+#youtubeCard img{
+    position:absolute;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+#youtubeCard svg{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
 }
 
 /* Floating heart */
-#heart{position:absolute; top: -20px; left:48%; font-size:40px; opacity:0; animation:heartRise 2s infinite;}
-@keyframes heartRise{0%{top:0px;opacity:0;}50%{opacity:1;}100%{top:-50px;opacity:0;}}
+#heart{position:absolute;top:-50px;left:45%;font-size:30px;opacity:0;animation:heartRise 2s infinite;}
+@keyframes heartRise{0%{top:-50px;opacity:0;}50%{top:-80px;opacity:1;}100%{top:-100px;opacity:0;}}
 </style>
 </head>
 <body>
 
+<!-- Intro Screen -->
 <div id="intro">
-    <h1>For Busayomi 💖</h1>
-    <button id="startBtn" onclick="startExperience()">Tap to Begin</button>
+<h1>For Busayomi 💖</h1>
+<button id="startBtn" onclick="startExperience()">Tap to Begin</button>
 </div>
 
+<!-- Main Screen -->
 <div id="main">
-    <h1>Busayomi 💕<br>Will you be my Valentine?</h1>
-    
-    <div class="btn-container">
-        <button id="yesBtn" onclick="showLove()">Yes My Love 💖</button>
-        <button id="noBtn" onmouseover="moveButton()" ontouchstart="moveButton()">No 😅</button>
+
+<div id="topText">
+<h1>Busayomi 💕 Will you be my Valentine?</h1>
+<button id="yesBtn" onclick="showLove()">Yes My Love 💖</button>
+<button id="noBtn">No 😅</button>
+<h2>You Are My Super Woman 💘</h2>
+</div>
+
+<div id="loveScreen">
+
+    <!-- YouTube Video Middle-Left -->
+    <div id="youtubeCard">
+        <a href="https://www.youtube.com/watch?v=DbyuYi5vNeU" target="_blank">
+            <img src="https://img.youtube.com/vi/DbyuYi5vNeU/hqdefault.jpg">
+            <svg height="60" viewBox="0 0 68 48" width="90">
+                <path d="M66.52,7.59a8.15,8.15,0,0,0-5.73-5.73C56.14,0,34,0,34,0S11.86,0,7.21,1.86a8.15,8.15,0,0,0-5.73,5.73A85.31,85.31,0,0,0,0,24a85.31,85.31,0,0,0,1.48,16.41,8.15,8.15,0,0,0,5.73,5.73C11.86,48,34,48,34,48s22.14,0,26.79-1.86a8.15,8.15,0,0,0,5.73-5.73A85.31,85.31,0,0,0,68,24,85.31,85.31,0,0,0,66.52,7.59Z" fill="#f00"/>
+                <polygon points="45 24 27 14 27 34 45 24" fill="#fff"/>
+            </svg>
+        </a>
     </div>
 
-    <div id="loveScreen">
-        <h2>You Are My Super Woman 💘</h2>
-
-        <div class="slideshow">
-            <div id="heart">💖</div>
-            <img src="pic1.jpg" class="active">
-            <img src="pic2.jpg">
-            <img src="pic3.jpg">
-            <img src="pic4.jpg">
-            <img src="pic5.jpg">
-            <img src="pic6.jpg">
-            <img src="pic7.jpg">
-            <img src="pic8.jpg">
-            <img src="pic9.jpg">
-            <img src="pic10.jpg">
-        </div>
-
-        <div id="youtubeCard">
-            <a href="https://www.youtube.com/watch?v=DbyuYi5vNeU" target="_blank" style="position:relative; display:inline-block; width:320px; height:180px; border-radius:10px; overflow:hidden; text-decoration:none; box-shadow:0 4px 10px rgba(0,0,0,0.3);">
-                <img src="https://img.youtube.com/vi/DbyuYi5vNeU/hqdefault.jpg" style="width:100%; height:100%; object-fit:cover;">
-                <div style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);">
-                    <svg height="60" viewBox="0 0 68 48" width="90"><path d="M66.52,7.59a8.15,8.15,0,0,0-5.73-5.73C56.14,0,34,0,34,0S11.86,0,7.21,1.86a8.15,8.15,0,0,0-5.73,5.73A85.31,85.31,0,0,0,0,24a85.31,85.31,0,0,0,1.48,16.41,8.15,8.15,0,0,0,5.73,5.73C11.86,48,34,48,34,48s22.14,0,26.79-1.86a8.15,8.15,0,0,0,5.73-5.73A85.31,85.31,0,0,0,68,24,85.31,85.31,0,0,0,66.52,7.59Z" fill="#f00"/><polygon points="45 24 27 14 27 34 45 24" fill="#fff"/></svg>
-                </div>
-            </a>
-        </div>
-
-        <div id="loveLetter">
-            Every smile of yours feels like a little piece of heaven, and every laugh is a song I never want to stop hearing. I love the way your eyes sparkle with joy, the way your voice dances in my ears, and how just thinking of you makes my whole world brighter.<br><br>
-            I want you to know that with you, I feel complete. You make ordinary moments extraordinary, and even the simplest days feel like adventures when I’m with you. My heart belongs to you entirely, and I promise to cherish, protect, and adore you for as long as I live. I love you 💕
-        </div>
+    <!-- Slideshow Center -->
+    <div class="slideshow">
+        <img src="pic1.jpg" class="active">
+        <img src="pic2.jpg">
+        <img src="pic3.jpg">
+        <img src="pic4.jpg">
+        <img src="pic5.jpg">
+        <img src="pic6.jpg">
+        <img src="pic7.jpg">
+        <img src="pic8.jpg">
+        <img src="pic9.jpg">
+        <img src="pic10.jpg">
     </div>
+
+    <!-- Love Letter Middle-Right -->
+    <div id="loveLetter">
+Every smile of yours feels like a little piece of heaven, and every laugh is a song I never want to stop hearing. I love the way your eyes sparkle with joy, the way your voice dances in my ears, and how just thinking of you makes my whole world brighter.<br><br>
+I want you to know that with you, I feel complete. You make ordinary moments extraordinary, and even the simplest days feel like adventures when I’m with you. My heart belongs to you entirely, and I promise to cherish, protect, and adore you for as long as I live. I love you 💕
+    </div>
+
+</div>
+<!-- Floating heart -->
+<div id="heart">💖</div>
 </div>
 
 <script>
+// Start Experience
 function startExperience(){
     document.getElementById("intro").style.display="none";
     document.getElementById("main").style.display="block";
 }
 
+// Move No Button
+const noBtn=document.getElementById("noBtn");
+noBtn.addEventListener("touchstart",moveButton);
+noBtn.addEventListener("mouseover",moveButton);
 function moveButton(){
-    const noBtn = document.getElementById("noBtn");
-    const maxX = window.innerWidth - 100;
-    const maxY = window.innerHeight - 50;
-    noBtn.style.left = Math.random() * maxX + "px";
-    noBtn.style.top = Math.random() * maxY + "px";
+    const maxX=window.innerWidth-100;
+    const maxY=window.innerHeight-50;
+    noBtn.style.left=Math.random()*maxX+"px";
+    noBtn.style.top=Math.random()*maxY+"px";
 }
 
+// Show Love — Slides + Letter + Video
 function showLove(){
-    document.getElementById("loveScreen").style.display="block";
-    document.getElementById("loveLetter").style.display="block";
-    document.getElementById("youtubeCard").style.display="block";
-    document.getElementById("noBtn").style.display="none"; // Hide No button after Yes
+    const loveScreen=document.getElementById("loveScreen");
+    loveScreen.style.display="flex";
 
-    const slides = document.querySelectorAll(".slideshow img");
-    let index = 0;
-    setInterval(() => {
+    // Show Love Letter
+    document.getElementById("loveLetter").style.display="block";
+
+    // Show YouTube Video
+    document.getElementById("youtubeCard").style.display="block";
+
+    // Slideshow with fade
+    const slides=document.querySelectorAll(".slideshow img");
+    let index=0;
+    setInterval(()=>{
         slides[index].classList.remove("active");
-        index = (index + 1) % slides.length;
+        index=(index+1)%slides.length;
         slides[index].classList.add("active");
-    }, 2500);
+    },2500);
 }
 </script>
 
