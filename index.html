@@ -1,183 +1,200 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Busayomi ❤️</title>
-
 <style>
-body {
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #ff99cc, #ff3366);
-    overflow: hidden;
-    color: white;
+body{
+    margin:0;
+    padding:0;
+    font-family:'Segoe UI',sans-serif;
+    background:#ff99cc;
+    overflow:hidden;
+    color:white;
+    text-align:center;
 }
 
-h1 {
-    margin-top: 40px;
-    font-size: 26px;
+/* Cinematic Intro */
+#intro{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:linear-gradient(135deg,#33001a,#ff3366);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:10;
+}
+#intro h1{
+    font-size:32px;
+    animation:fadeIn 3s ease-in-out;
+}
+#startBtn{
+    margin-top:20px;
+    padding:12px 25px;
+    font-size:18px;
+    border-radius:30px;
+    border:none;
+    background:#ff3366;
+    color:white;
+    cursor:pointer;
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* Floating elements */
+#loveLetter{
+    position:fixed;
+    top:20px;
+    left:20px;
+    font-size:24px;
+    cursor:pointer;
+    z-index:20;
+}
+#youtubeCard{
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:20;
 }
 
-button {
-    padding: 12px 25px;
-    font-size: 18px;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    margin: 10px;
-    position: absolute;
+/* Main Screen */
+#main{display:none;padding-top:80px;position:relative;}
+button{
+    padding:12px 25px;
+    font-size:18px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    margin:10px;
+    position:absolute;
 }
+#yesBtn{background:white;color:#ff3366;position:relative;}
+#noBtn{background:#444;color:white;}
+#loveScreen{display:none;margin-top:20px;position:relative;}
 
-#yesBtn {
-    background-color: white;
-    color: #ff3366;
-    position: relative;
+/* Slideshow */
+.slideshow{
+    width:80%;
+    max-width:320px;
+    margin:20px auto;
+    position:relative;
+    height:400px;
 }
+.slideshow img{
+    width:100%;
+    border-radius:15px;
+    position:absolute;
+    opacity:0;
+    transition:opacity 1s ease-in-out;
+}
+.slideshow img.active{opacity:1;}
 
-#noBtn {
-    background-color: #444;
-    color: white;
-}
-
-#loveScreen {
-    display: none;
-    margin-top: 20px;
-    animation: fadeIn 1.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-
-.slideshow {
-    width: 80%;
-    max-width: 300px;
-    margin: 15px auto;
-}
-
-.slideshow img {
-    width: 100%;
-    border-radius: 15px;
-}
-
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-}
+/* Teddy Hug Animation */
+#bearContainer{display:none;position:relative;margin-top:20px;height:200px;}
+#bear1,#bear2{position:absolute;width:100px;transition:1s;bottom:0;}
+#bear1{left:35%;transform:rotate(-10deg);}
+#bear2{left:55%;transform:rotate(10deg);}
+.hug{animation:hugging 2s infinite alternate;}
+@keyframes hugging{0%{transform:scale(1) rotate(-10deg);}50%{transform:scale(1.1) rotate(-5deg);}100%{transform:scale(1) rotate(-10deg);}}
+#heart{position:absolute;top:-50px;left:45%;font-size:40px;opacity:0;animation:heartRise 2s infinite;}
+@keyframes heartRise{0%{top:-50px;opacity:0;}50%{top:-80px;opacity:1;}100%{top:-100px;opacity:0;}}
 </style>
 </head>
-
 <body>
 
-<h1>Busayomi 💖<br>Will you be my Valentine?</h1>
+<!-- Love Letter top-left -->
+<div id="loveLetter">💌 A Love Letter for You</div>
 
-<button id="yesBtn" onclick="showLove()">Yes My Love 💕</button>
+<!-- YouTube Video top-right -->
+<div id="youtubeCard">
+    <a href="https://www.youtube.com/watch?v=8zQFh4r4xO4" target="_blank" style="position:relative; display:inline-block; width:320px; height:180px; border-radius:10px; overflow:hidden; text-decoration:none; box-shadow:0 4px 10px rgba(0,0,0,0.3);">
+        <img src="https://img.youtube.com/vi/8zQFh4r4xO4/hqdefault.jpg" style="width:100%; height:100%; object-fit:cover;">
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);">
+            <svg height="60" viewBox="0 0 68 48" width="90">
+                <path d="M66.52,7.59a8.15,8.15,0,0,0-5.73-5.73C56.14,0,34,0,34,0S11.86,0,7.21,1.86a8.15,8.15,0,0,0-5.73,5.73A85.31,85.31,0,0,0,0,24a85.31,85.31,0,0,0,1.48,16.41,8.15,8.15,0,0,0,5.73,5.73C11.86,48,34,48,34,48s22.14,0,26.79-1.86a8.15,8.15,0,0,0,5.73-5.73A85.31,85.31,0,0,0,68,24,85.31,85.31,0,0,0,66.52,7.59Z" fill="#f00"/>
+                <polygon points="45 24 27 14 27 34 45 24" fill="#fff"/>
+            </svg>
+        </div>
+    </a>
+</div>
+
+<!-- Intro Screen -->
+<div id="intro">
+<h1>For Busayomi 💖</h1>
+<button id="startBtn" onclick="startExperience()">Tap to Begin</button>
+</div>
+
+<!-- Main Content -->
+<div id="main">
+<h1>Busayomi 💕<br>Will you be my Valentine?</h1>
+<button id="yesBtn" onclick="showLove()">Yes My Love 💖</button>
 <button id="noBtn">No 😅</button>
 
 <div id="loveScreen">
-    <h2>You Are My Super Woman 💘</h2>
+<h2>You Are My Super Woman 💘</h2>
 
-    <div class="slideshow">
-        <img id="slide" src="pic1.jpg">
-    </div>
-
-    <p>I promise to cherish you always, Busayomi ❤️</p>
-
-    <div id="music"></div>
+<div class="slideshow">
+<img src="pic1.jpg" class="active">
+<img src="pic2.jpg">
+<img src="pic3.jpg">
+<img src="pic4.jpg">
+<img src="pic5.jpg">
+<img src="pic6.jpg">
+<img src="pic7.jpg">
+<img src="pic8.jpg">
+<img src="pic9.jpg">
+<img src="pic10.jpg">
 </div>
 
-<canvas id="fireworks"></canvas>
+<!-- Teddy Hug Animation -->
+<div id="bearContainer">
+<img id="bear1" src="bear1.png" class="hug" alt="Bear 1">
+<img id="bear2" src="bear2.png" class="hug" alt="Bear 2">
+<div id="heart">💖</div>
+</div>
+
+<p>I promise to cherish you always ❤️</p>
+</div>
+</div>
 
 <script>
-const noBtn = document.getElementById("noBtn");
-
-noBtn.addEventListener("touchstart", moveButton);
-noBtn.addEventListener("mouseover", moveButton);
-
-function moveButton() {
-    const maxX = window.innerWidth - 100;
-    const maxY = window.innerHeight - 50;
-
-    noBtn.style.left = Math.random() * maxX + "px";
-    noBtn.style.top = Math.random() * maxY + "px";
+// Start Experience
+function startExperience(){
+    document.getElementById("intro").style.display="none";
+    document.getElementById("main").style.display="block";
 }
 
-function showLove() {
-    document.getElementById("loveScreen").style.display = "block";
+// Move No Button
+const noBtn=document.getElementById("noBtn");
+noBtn.addEventListener("touchstart",moveButton);
+noBtn.addEventListener("mouseover",moveButton);
+function moveButton(){
+    const maxX=window.innerWidth-100;
+    const maxY=window.innerHeight-50;
+    noBtn.style.left=Math.random()*maxX+"px";
+    noBtn.style.top=Math.random()*maxY+"px";
+}
 
-    // Start slideshow
-    let count = 1;
-    setInterval(() => {
-        count++;
-        if (count > 10) count = 1;
-        document.getElementById("slide").src = "pic" + count + ".jpg";
-    }, 2000);
+// Show Love — Slides + Bears
+function showLove(){
+    const loveScreen=document.getElementById("loveScreen");
+    loveScreen.style.display="block";
 
-   function showLove() {
-    const loveScreen = document.getElementById("loveScreen");
-    loveScreen.style.display = "block";
-
-    // Slideshow
-    const slides = document.querySelectorAll(".slideshow img");
-    let index = 0;
-    setInterval(() => {
+    // Slideshow with fade
+    const slides=document.querySelectorAll(".slideshow img");
+    let index=0;
+    setInterval(()=>{
         slides[index].classList.remove("active");
-        index = (index + 1) % slides.length;
+        index=(index+1)%slides.length;
         slides[index].classList.add("active");
-    }, 2500);
+    },2500);
 
-   // Show Hugging Bears
-    const bearContainer = document.getElementById("bearContainer");
-    bearContainer.style.display = "block";
+    // Show Hugging Bears
+    const bearContainer=document.getElementById("bearContainer");
+    bearContainer.style.display="block";
     document.getElementById("bear1").classList.add("hug");
     document.getElementById("bear2").classList.add("hug");
-
-    // Music Button
-    document.getElementById("music").innerHTML = `
-    <br><br>
-    <a href="https://www.youtube.com/watch?v=8zQFh4r4xO4" target="_blank"
-       style="display:inline-block;
-              background:#ff3366;
-              padding:15px 25px;
-              border-radius:30px;
-              color:white;
-              font-weight:bold;
-              text-decoration:none;
-              font-size:18px;
-              transition:0.3s;">
-       Play Our Song 🎵
-    </a>`;
-}
-
-
-}
-
-// Fireworks
-const canvas = document.getElementById("fireworks");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-function launchFireworks() {
-    setInterval(() => {
-        for (let i = 0; i < 100; i++) {
-            let x = Math.random() * canvas.width;
-            let y = Math.random() * canvas.height;
-            ctx.fillStyle = "hsl(" + Math.random() * 360 + ",100%,50%)";
-            ctx.beginPath();
-            ctx.arc(x, y, 3, 0, Math.PI * 2);
-            ctx.fill();
-        }
-        setTimeout(() => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }, 300);
-    }, 600);
 }
 </script>
 
