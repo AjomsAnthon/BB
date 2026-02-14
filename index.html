@@ -9,7 +9,7 @@ body{
     padding:0;
     font-family:'Segoe UI',sans-serif;
     background:#ff99cc;
-    overflow:hidden;
+    overflow-x:hidden;
     color:white;
     text-align:center;
 }
@@ -43,7 +43,7 @@ body{
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
 /* Main Screen */
-#main{display:none; padding-top:50px; position:relative;}
+#main{display:none;padding-top:20px;position:relative;}
 button{
     padding:12px 25px;
     font-size:18px;
@@ -56,40 +56,49 @@ button{
 #yesBtn{background:white;color:#ff3366;position:relative;}
 #noBtn{background:#444;color:white;}
 
-/* Container for post-Yes layout */
+/* Text container top */
+#topText{
+    margin-top:10px;
+}
+#topText h1{font-size:28px; margin:10px 0;}
+#topText button{position:static;margin:5px;}
+
+/* Love Screen layout */
 #loveScreen{
     display:none;
-    position:relative;
-    width:100%;
-    height:calc(100vh - 100px);
+    margin-top:20px;
     display:flex;
     justify-content:space-around;
     align-items:center;
     flex-wrap:wrap;
+    width:100%;
+    height:auto;
 }
 
 /* Slideshow */
 .slideshow{
-    width:40%;
-    max-width:400px;
+    width:45%;
+    max-width:500px;
     height:auto;
     position:relative;
     border-radius:15px;
 }
 .slideshow img{
     width:100%;
+    max-height:50vh;
     border-radius:15px;
     position:absolute;
     opacity:0;
     transition:opacity 1s ease-in-out;
+    object-fit:contain;
 }
 .slideshow img.active{opacity:1;}
 
 /* YouTube Video */
 #youtubeCard{
     display:none;
-    width:35%;
-    max-width:350px;
+    width:30%;
+    max-width:320px;
 }
 #youtubeCard a{
     display:block;
@@ -117,8 +126,8 @@ button{
 /* Love Letter */
 #loveLetter{
     display:none;
-    width:35%;
-    max-width:350px;
+    width:30%;
+    max-width:320px;
     background:rgba(255,255,255,0.2);
     padding:15px 20px;
     border-radius:15px;
@@ -147,12 +156,14 @@ button{
 
 <!-- Main Content -->
 <div id="main">
-<h1>Busayomi 💕<br>Will you be my Valentine?</h1>
+<div id="topText">
+<h1>Busayomi 💕 Will you be my Valentine?</h1>
 <button id="yesBtn" onclick="showLove()">Yes My Love 💖</button>
 <button id="noBtn">No 😅</button>
+<h2>You Are My Super Woman 💘</h2>
+</div>
 
 <div id="loveScreen">
-
     <!-- YouTube Video Middle-Left -->
     <div id="youtubeCard">
         <a href="https://www.youtube.com/watch?v=DbyuYi5vNeU" target="_blank">
